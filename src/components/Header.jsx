@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { addTheme } from '../store/theme/theme-actions';
 import styled from 'styled-components';
 import {useEffect} from 'react';
 import { Link } from 'react-router-dom';
@@ -35,7 +37,8 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header = () => {
-  const theme = 'light';
+  const dispatch = useDispatch();
+  const theme = useSelector((store) => store.theme);
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
@@ -46,7 +49,9 @@ export const Header = () => {
       <Container>
         <Wrapper>
           <Title>Where is the world?</Title>
-          <ModeSwitcher>
+          <ModeSwitcher
+            onClick={() => dispatch(addTheme(theme === 'dark' ? 'light' : 'dark'))}
+          >
             {theme === 'light' ? (
               <IoMoonOutline size="14px" />
             ) : (
