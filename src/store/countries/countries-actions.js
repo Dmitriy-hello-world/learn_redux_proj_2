@@ -18,7 +18,7 @@ const addError = (error) => ({
 
 export const loadingCountries = () => (dispatch, getState, { client, api }) => {
   dispatch(startLoading());
-
+  
   client.get(api.ALL_COUNTRIES)
     .then(({ data }) => dispatch(addCountries(data)))
     .catch((error) => dispatch(addError(error)))
