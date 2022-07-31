@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addTheme } from '../store/theme/theme-actions';
 import styled from 'styled-components';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMoon, IoMoonOutline } from 'react-icons/io5';
+import { resetControls } from '../store/controls/controls-actions';
 
 import { Container } from './Container';
 
@@ -48,7 +49,9 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Where is the world?</Title>
+          <Title
+            onClick={() => dispatch(resetControls())}
+          >Where is the world?</Title>
           <ModeSwitcher
             onClick={() => dispatch(addTheme(theme === 'dark' ? 'light' : 'dark'))}
           >

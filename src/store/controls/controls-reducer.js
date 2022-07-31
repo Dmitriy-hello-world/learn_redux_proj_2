@@ -1,4 +1,4 @@
-import { ADD_FILTER, ADD_REGION } from "./controls-actions";
+import { ADD_FILTER, ADD_REGION, RESET_CONTROLS } from "./controls-actions";
 
 const initialState = {
   filter: '',
@@ -18,6 +18,9 @@ export const controlsReducer = (store = initialState, {type, payload}) => {
         ...store,
         region: payload
       }
+    }
+    case RESET_CONTROLS: {
+      return initialState
     }
     default: {
       return store;
