@@ -20,6 +20,8 @@ export const loadingCountries = () => (dispatch, getState, { client, api }) => {
   dispatch(startLoading());
   
   client.get(api.ALL_COUNTRIES)
-    .then(({ data }) => dispatch(addCountries(data)))
+    .then(({ data }) => {
+      dispatch(addCountries(data.filter(country => country.name !== 'Russian Federation')))
+    })
     .catch((error) => dispatch(addError(error)))
 };
