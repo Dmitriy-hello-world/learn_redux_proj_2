@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentCountryInfo } from '../store/details/details-selectors';
-import { loadCurentCountry, resetCurrentCoutry } from '../store/details/details-actions';
+import { loadCurrentCountry, resetCurrentCountry } from '../store/details/details-actions';
 import { Button } from '../components/Button';
 import { Info } from '../components/Info';
 import { useEffect } from 'react';
@@ -17,9 +17,9 @@ export const Details = () => {
   const { currentCountry, error, status } = useSelector(selectCurrentCountryInfo);
 
   useEffect(() => {
-    dispatch(loadCurentCountry(name));
+    dispatch(loadCurrentCountry(name));
 
-    return () => dispatch(resetCurrentCoutry())
+    return () => dispatch(resetCurrentCountry())
   }, [name, dispatch]);
 
   return (

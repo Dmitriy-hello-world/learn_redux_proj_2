@@ -1,9 +1,10 @@
-import { ADD_CURRENT_COUNTRY, ADD_ERROR, START_LOADING, RESET } from './details-actions'
+import { ADD_CURRENT_COUNTRY, ADD_ERROR, START_LOADING, RESET, ADD_NEIGHBORS } from './details-actions'
 
 const initialState = {
     currentCountry: null,
     status: 'idle', // received | loading | rejected
     error: null,
+    neighbors: [],
 }
 
 export const detailsReducer = (store = initialState, {type, payload}) => {
@@ -20,6 +21,12 @@ export const detailsReducer = (store = initialState, {type, payload}) => {
                 ...store,
                 status: 'received',
                 currentCountry: payload
+            }
+        }
+        case ADD_NEIGHBORS: {
+            return {
+                ...store,
+                neighbors: payload
             }
         }
         case ADD_ERROR: {
