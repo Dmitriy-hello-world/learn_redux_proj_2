@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
 import { Search } from './Search';
-import { CustomSelect } from './CustomSelect';
+import { CustomSelect } from '../../components/CustomSelect';
+import { useRegion } from './use-region';
 
 const optionsMap = {
   'Africa': { value: 'Africa', label: 'Africa' },
@@ -25,16 +25,18 @@ const Wrapper = styled.div`
 `;
 
 export const Controls = () => {
+  const [region, onHandleChange] = useRegion();
+  
   return (
     <Wrapper>
       <Search />
       <CustomSelect
+        onChange={onHandleChange}
         options={options}
         placeholder="Filter by Region"
         isClearable
         isSearchable={false}
-        value={''}
-        onChange={() => {}}
+        value={optionsMap[region]}
       />
     </Wrapper>
   );

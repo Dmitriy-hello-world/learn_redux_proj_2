@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useNeighbors } from './use-neighbors';
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -102,6 +103,8 @@ export const Info = (props) => {
     push,
   } = props;
 
+  const neighbors = useNeighbors(borders);
+
   return (
     <Wrapper>
       <InfoImage src={flag} alt={name} />
@@ -153,9 +156,9 @@ export const Info = (props) => {
             <span>There is no border countries</span>
           ) : (
             <TagGroup>
-              {[].map((b) => (
+              {neighbors.map((b) => (
                 <Tag key={b} onClick={() => push(`/country/${b}`)}>
-                  {b}
+                  {b === 'Russian Federation' ? 'Terrorist county' : b}
                 </Tag>
               ))}
             </TagGroup>
